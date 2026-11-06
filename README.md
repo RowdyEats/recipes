@@ -23,3 +23,16 @@ hugo build --minify --baseURL https://rowdyeats.github.io/recipes/
 ## Nutrition policy
 
 JSON-LD `nutrition` is omitted unless metadata marks `weighed-batch` and supplies per-serving totals. `carbohydrateContent` is **total carbs**, never net carbs.
+
+## Deployment notes
+
+GitHub Pages is published from the **`gh-pages`** branch (built `public/`).
+
+The preferred Actions workflow lives at [`deploy/hugo-pages.workflow.yml`](deploy/hugo-pages.workflow.yml). Copying it to `.github/workflows/hugo.yml` requires a GitHub credential with the **`workflow`** OAuth scope (current `gh` token has `repo` only). Until then, rebuild and update `gh-pages` locally:
+
+```bash
+make build
+# publish public/ to gh-pages (see scripts/publish_gh_pages.sh)
+```
+
+Cronometer Gold URL import is **not verified**.
