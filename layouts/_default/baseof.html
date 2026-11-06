@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if and .Title (ne .Title .Site.Title) }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  {{ with .Params.canonical }}<link rel="canonical" href="{{ . }}">{{ end }}
+  {{ $css := resources.Get "css/site.css" | minify }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  {{ block "head" . }}{{ end }}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header no-print">
+    <div class="wrap">
+      <a class="brand" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
+      <p class="tagline">{{ .Site.Params.description }}</p>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer wrap no-print">
+    <p>Chef owns RecipeMD sources under <code>recipes/</code>. Schema.org markup does not guarantee Cronometer import.</p>
+  </footer>
+</body>
+</html>

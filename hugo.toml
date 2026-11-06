@@ -1,0 +1,17 @@
+baseURL = "https://rowdyeats.github.io/recipes/"
+languageCode = "en-us"
+title = "RowdyEats Recipes"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+canonifyURLs = true
+relativeURLs = false
+
+[params]
+  description = "Public RecipeMD recipes for Cronometer Gold URL import (import unverified)."
+  owner = "RowdyEats"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# CSS still minified via pipes; avoid HTML minify (lowercases JSON-LD keys).
+[minify]
+  minifyOutput = false

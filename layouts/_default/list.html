@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="recipe">
+  <header>
+    <p class="meta">
+      {{ with .Params.recipe_id }}<code>{{ . }}</code>{{ end }}
+      {{ if .Params.is_latest }} · <span class="badge">latest → v{{ .Params.latest_version }}</span>{{ end }}
+    </p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  {{ .Content }}
+  {{ partial "jsonld.html" . }}
+</article>
+{{ end }}

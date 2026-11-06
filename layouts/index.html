@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <h2>Recipes</h2>
+  <ul class="recipe-index">
+  {{ range where .Site.Sections "Type" "recipe" }}
+    <li>
+      <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+      {{ with .Params.recipe_id }} — <code>{{ . }}</code>{{ end }}
+      {{ with .Params.latest_version }} · latest v{{ . }}{{ end }}
+    </li>
+  {{ else }}
+    {{ range .Site.Sections }}
+      <li>
+        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+        {{ with .Params.recipe_id }} — <code>{{ . }}</code>{{ end }}
+        {{ with .Params.latest_version }} · latest v{{ . }}{{ end }}
+      </li>
+    {{ end }}
+  {{ end }}
+  </ul>
+</article>
+{{ end }}
