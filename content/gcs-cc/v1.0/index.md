@@ -25,19 +25,19 @@
 }
 
 <div class="callout" role="note">
-<p><strong>Read before cooking or importing</strong></p>
+<p><strong>Before you cook</strong></p>
 <ul>
-<li>Nutrition: not published in schema.org JSON-LD — `nutrition_status` is `estimated pending weighed batch`. Do not treat ingredient grams as a weighed finished batch.</li>
-<li>Yield basis: serving count only; finished edible mass unknown until Chef weighs a batch.</li>
-<li>Ingredient weights: values below are as authored in RecipeMD (proposed/card-aligned unless CHANGELOG says weighed).</li>
+<li>Nutrition numbers are still cooking — status is “estimated pending weighed batch”, so we are not publishing a nutrition panel on this page yet. Ingredient grams below are for shopping and prep, not a finished weighed batch.</li>
+<li>Yield lists servings for now; finished edible mass unknown until a batch is weighed and the recipe is updated.</li>
+<li>Ingredient weights are as written on the card (proposed or card-aligned unless a CHANGELOG entry says they were weighed).</li>
 </ul>
 </div>
 
 Chef printable card aligned draft for future Cronometer URL import. Untested mass totals — weigh finished batch and bump version.
 
-**Tags:** `chef`, `new-mexican`, `instant-pot`, `batch`
+<div class="tag-row"><span class="tag-chip">chef</span> <span class="tag-chip">new-mexican</span> <span class="tag-chip">instant-pot</span> <span class="tag-chip">batch</span></div>
 
-**Yield:** 6 servings
+<p class="yield-line"><strong>Yield:</strong> 6 servings</p>
 
 ## Ingredients
 
@@ -59,6 +59,7 @@ Chef printable card aligned draft for future Cronometer URL import. Untested mas
 3. Stir in milk off pressure, to taste. Sour cream spoonful for guests who want it milder.
 4. Weigh finished edible yield; record grams in CHANGELOG for per-100g nutrition.
 
----
 
-*Source of truth:* `recipes/GCS-CC/v1.0.recipemd.md` (RecipeMD 2.4). Cronometer Gold URL import is **not verified** against this page.
+<p class="fine-print no-print">
+Recipe file: <code>recipes/GCS-CC/v1.0.recipemd.md</code>. Tracking apps may be able to import this page by URL; we have not verified every importer.
+</p>

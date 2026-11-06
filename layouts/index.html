@@ -1,24 +1,34 @@
 {{ define "main" }}
-<article>
+<section class="home-hero">
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-  <h2>Recipes</h2>
+</section>
+<section>
+  <h2>On the menu</h2>
   <ul class="recipe-index">
   {{ range where .Site.Sections "Type" "recipe" }}
     <li>
-      <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
-      {{ with .Params.recipe_id }} — <code>{{ . }}</code>{{ end }}
-      {{ with .Params.latest_version }} · latest v{{ . }}{{ end }}
+      <a href="{{ .RelPermalink }}">
+        <strong>{{ .Title }}</strong>
+        <span class="recipe-card-meta">
+          {{ with .Params.latest_version }}Current version v{{ . }}{{ end }}
+          {{ with .Params.yields }} · {{ delimit . ", " }}{{ end }}
+        </span>
+      </a>
     </li>
   {{ else }}
     {{ range .Site.Sections }}
       <li>
-        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
-        {{ with .Params.recipe_id }} — <code>{{ . }}</code>{{ end }}
-        {{ with .Params.latest_version }} · latest v{{ . }}{{ end }}
+        <a href="{{ .RelPermalink }}">
+          <strong>{{ .Title }}</strong>
+          <span class="recipe-card-meta">
+            {{ with .Params.latest_version }}Current version v{{ . }}{{ end }}
+            {{ with .Params.yields }} · {{ delimit . ", " }}{{ end }}
+          </span>
+        </a>
       </li>
     {{ end }}
   {{ end }}
   </ul>
-</article>
+</section>
 {{ end }}

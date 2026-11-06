@@ -2,9 +2,9 @@
 <article class="recipe">
   <header>
     <p class="meta">
-      {{ with .Params.recipe_id }}<code>{{ . }}</code>{{ end }}
-      {{ with .Params.recipe_version }} · immutable <code>v{{ . }}</code>{{ end }}
-      {{ if .Params.slug_path }} · <a class="no-print" href="{{ printf "/%s/" .Params.slug_path | relURL }}">latest</a>{{ end }}
+      {{ with .Params.recipe_version }}<span class="badge">Version {{ . }}</span>{{ end }}
+      {{ if .Params.slug_path }}<a class="no-print" href="{{ printf "/%s/" .Params.slug_path | relURL }}">Current recipe</a>{{ end }}
+      {{ with .Params.recipe_id }}<span class="meta-quiet no-print">ID {{ . }}</span>{{ end }}
     </p>
     <h1>{{ .Title }}</h1>
   </header>

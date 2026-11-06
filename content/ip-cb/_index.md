@@ -38,19 +38,19 @@
 }
 
 <div class="callout" role="note">
-<p><strong>Read before cooking or importing</strong></p>
+<p><strong>Before you cook</strong></p>
 <ul>
-<li>Nutrition: not published in schema.org JSON-LD — `nutrition_status` is `estimated pending weighed batch`. Do not treat ingredient grams as a weighed finished batch.</li>
-<li>Yield basis: serving count only; finished edible mass unknown until Chef weighs a batch.</li>
-<li>Ingredient weights: values below are as authored in RecipeMD (proposed/card-aligned unless CHANGELOG says weighed).</li>
+<li>Nutrition numbers are still cooking — status is “estimated pending weighed batch”, so we are not publishing a nutrition panel on this page yet. Ingredient grams below are for shopping and prep, not a finished weighed batch.</li>
+<li>Yield lists servings for now; finished edible mass unknown until a batch is weighed and the recipe is updated.</li>
+<li>Ingredient weights are as written on the card (proposed or card-aligned unless a CHANGELOG entry says they were weighed).</li>
 </ul>
 </div>
 
 Chef printable card aligned draft for Cronometer URL import. Ingredient grams are proposed conversions from the card; finished edible mass unknown until a batch is weighed. Leave unsalted until use. Flavor boosters (ginger, turmeric, star anise, cloves, cinnamon, Parmesan rind, dried shiitake) are optional experiments, not base ingredients.
 
-**Tags:** `chef`, `instant-pot`, `batch`, `broth`, `sipping`
+<div class="tag-row"><span class="tag-chip">chef</span> <span class="tag-chip">instant-pot</span> <span class="tag-chip">batch</span> <span class="tag-chip">broth</span> <span class="tag-chip">sipping</span></div>
 
-**Yield:** about 2.5 to 3 quarts finished
+<p class="yield-line"><strong>Yield:</strong> about 2.5 to 3 quarts finished</p>
 
 ## Ingredients
 
@@ -74,13 +74,14 @@ Chef printable card aligned draft for Cronometer URL import. Ingredient grams ar
 5. Chill overnight and lift off the fat. It should set like loose jelly.
 6. Weigh finished edible yield; record grams in CHANGELOG. Freeze in 1-cup and 4-cup portions. Fridge 4 to 5 days; freezer about 6 months.
 
----
 
-*Source of truth:* `recipes/IP-CB/v1.0.recipemd.md` (RecipeMD 2.4). Cronometer Gold URL import is **not verified** against this page.
+<p class="fine-print no-print">
+Recipe file: <code>recipes/IP-CB/v1.0.recipemd.md</code>. Tracking apps may be able to import this page by URL; we have not verified every importer.
+</p>
 
 ## Versions
 
-Stable **latest** URL: [`/ip-cb/`](/ip-cb/) → currently **v1.0**.
+<p class="versions-list">This page is the <strong>current</strong> recipe (<a href="/ip-cb/">/ip-cb/</a> → v1.0). Older versions stay published so a past batch is still findable:</p>
 
-- [v1.0](/ip-cb/v1.0/) (immutable)
+- [Version 1.0](/ip-cb/v1.0/) — locked once published
 

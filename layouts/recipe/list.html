@@ -2,8 +2,8 @@
 <article class="recipe">
   <header>
     <p class="meta">
-      {{ with .Params.recipe_id }}<code>{{ . }}</code>{{ end }}
-      {{ if .Params.is_latest }} · <span class="badge">latest → v{{ .Params.latest_version }}</span>{{ end }}
+      {{ if .Params.is_latest }}<span class="badge">Current · v{{ .Params.latest_version }}</span>{{ end }}
+      {{ with .Params.recipe_id }}<span class="meta-quiet no-print">ID {{ . }}</span>{{ end }}
     </p>
     <h1>{{ .Title }}</h1>
   </header>

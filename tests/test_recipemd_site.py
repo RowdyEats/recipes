@@ -153,6 +153,8 @@ class BuildOutputTests(unittest.TestCase):
         html = (self.public / "gcs-cc" / "v1.0" / "index.html").read_text(encoding="utf-8")
         self.assertIn("estimated pending weighed batch", html)
         self.assertIn("finished edible mass unknown", html.lower())
+        self.assertIn("Before you cook", html)
+        self.assertIn("callout", html)
 
     def test_version_protection_helper(self):
         """Immutable version files must not be silently replaced by generate without bump."""

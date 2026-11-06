@@ -39,21 +39,21 @@ def render_body_md(recipe) -> str:
     warnings = []
     if "estimated" in status.lower() or "pending" in status.lower():
         warnings.append(
-            "**Nutrition:** not published in schema.org JSON-LD — "
-            f"`nutrition_status` is `{status}`. Do not treat ingredient grams as a weighed finished batch."
+            f"Nutrition numbers are still cooking — status is “{status}”, "
+            "so we are not publishing a nutrition panel on this page yet. "
+            "Ingredient grams below are for shopping and prep, not a finished weighed batch."
         )
     if not recipe.finished_mass():
         warnings.append(
-            "**Yield basis:** serving count only; finished edible mass unknown until Chef weighs a batch."
+            "Yield lists servings for now; finished edible mass unknown until a batch is weighed and the recipe is updated."
         )
     warnings.append(
-        "**Ingredient weights:** values below are as authored in RecipeMD (proposed/card-aligned unless CHANGELOG says weighed)."
+        "Ingredient weights are as written on the card (proposed or card-aligned unless a CHANGELOG entry says they were weighed)."
     )
     lines.append('<div class="callout" role="note">')
-    lines.append("<p><strong>Read before cooking or importing</strong></p>")
+    lines.append("<p><strong>Before you cook</strong></p>")
     lines.append("<ul>")
     for w in warnings:
-        # strip markdown bold markers for HTML list
         w_html = w.replace("**", "")
         lines.append(f"<li>{w_html}</li>")
     lines.append("</ul>")
@@ -63,10 +63,11 @@ def render_body_md(recipe) -> str:
         lines.append(recipe.description)
         lines.append("")
     if recipe.tags:
-        lines.append("**Tags:** " + ", ".join(f"`{t}`" for t in recipe.tags))
+        chips = " ".join(f'<span class="tag-chip">{html_escape(tag)}</span>' for tag in recipe.tags)
+        lines.append(f'<div class="tag-row">{chips}</div>')
         lines.append("")
     if recipe.yields:
-        lines.append("**Yield:** " + ", ".join(recipe.yields))
+        lines.append(f'<p class="yield-line"><strong>Yield:</strong> {html_escape(", ".join(recipe.yields))}</p>')
         lines.append("")
     lines.append("## Ingredients")
     lines.append("")
@@ -81,12 +82,13 @@ def render_body_md(recipe) -> str:
         lines.append("")
         lines.append(recipe.instructions)
         lines.append("")
-    lines.append("---")
     lines.append("")
+    lines.append('<p class="fine-print no-print">')
     lines.append(
-        f"*Source of truth:* `recipes/{recipe.recipe_id or 'UNKNOWN'}/v{recipe.version}.recipemd.md` (RecipeMD 2.4). "
-        "Cronometer Gold URL import is **not verified** against this page."
+        f"Recipe file: <code>recipes/{html_escape(recipe.recipe_id or 'UNKNOWN')}/v{html_escape(recipe.version)}.recipemd.md</code>. "
+        "Tracking apps may be able to import this page by URL; we have not verified every importer."
     )
+    lines.append("</p>")
     lines.append("")
     return "\n".join(lines)
 
@@ -173,9 +175,13 @@ def write_latest_index(slug: str, recipes: list, base_url: str) -> Path:
     # Body: same as latest version + version list
     body = render_body_md(latest)
     body += "\n## Versions\n\n"
-    body += f"Stable **latest** URL: [`/{slug}/`](/{slug}/) → currently **v{latest.version}**.\n\n"
+    body += (
+        f'<p class="versions-list">This page is the <strong>current</strong> recipe '
+        f'(<a href="/{slug}/">/{slug}/</a> → v{latest.version}). '
+        "Older versions stay published so a past batch is still findable:</p>\n\n"
+    )
     for v in versions:
-        body += f"- [v{v['version']}]({v['path']}) (immutable)\n"
+        body += f"- [Version {v['version']}]({v['path']}) — locked once published\n"
     body += "\n"
     header = json.dumps(fm, indent=2, ensure_ascii=False)
     out = dir_path / "_index.md"
@@ -216,8 +222,7 @@ title: RowdyEats Recipes
 layout: home
 ---
 
-Public RecipeMD-backed recipes for Cronometer Gold URL import (import **unverified**).
-Chef owns `recipes/*/vX.Y.recipemd.md`. Versions are immutable once published.
+Home-cooked recipes from the RowdyEats kitchen.
 """,
             encoding="utf-8",
         )

@@ -1,12 +1,12 @@
 baseURL = "https://rowdyeats.github.io/recipes/"
 languageCode = "en-us"
-title = "RowdyEats Recipes"
+title = "RowdyEats Kitchen"
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 canonifyURLs = true
 relativeURLs = false
 
 [params]
-  description = "Public RecipeMD recipes for Cronometer Gold URL import (import unverified)."
+  description = "Home-cooked recipes from the RowdyEats kitchen — chile, fire, and weekend smoke."
   owner = "RowdyEats"
 
 [markup.goldmark.renderer]
